@@ -1,19 +1,21 @@
-let shapes = require('./shapes');
+const http = require('http');
 
-function solveRectangle(l,b) {
-    console.log('\n') ;
-    console.log("Solving for rectangle with l="  +  l + " and b=" + b) ;
+const hostname = 'localhost' ;
+const port     = 3000 ;
+const server = http.createServer(  (req, res) => {
+    // req : request to the server
+    // res : the response from the server
+    console.log(req.headers) ;
 
-    shapes(l,b, (error , data ) => {
-        // just like Axios !
-        if(error){ // error is not null
-            console.log('Error : ' + error);
-        }
-        else{
-            console.log('Perimeter : ' + data.perimeter() + ', Area : ' + data.area()) ;
-        }
-    })
-}
+    res.statusCode = 200 ;
+    res.setHeader('Content-Type','text/html');
+    // inform the client that body is in html
+    res.end('<html><body><h1>Hello, world!!</h1></body></html>');
+    // inline valid html response.
+});
 
-solveRectangle(10,25);
-// solveRectangle(0,4);
+server.listen(port,hostname, () => {
+    // function will be executed when server gives a response !
+    console.log(`Server is running at http://${hostname}:${port}`);
+});
+
