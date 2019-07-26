@@ -8,7 +8,7 @@ const port     = 3000 ;
 const server = http.createServer(  (req, res) => {
     // req : request to the server
     // res : the response from the server
-    console.log( 'Request for : ' +  req.url + 'by method : ' + req.method) ;
+    console.log( 'Request for : ' +  req.url + ', by method : ' + req.method) ;
 
     if(req.method === 'GET'){
         // we will serve only get requests now
@@ -23,7 +23,8 @@ const server = http.createServer(  (req, res) => {
 
         if(fileExt === '.html'){
             // check if exists first :
-            fs.exists(filePath, (exists) => {
+            let exists = fs.existsSync(filePath);
+
                 if (!exists) {
                     res.statusCode = 404 ;
                     res.setHeader('Content-Type','text/html');
@@ -39,7 +40,6 @@ const server = http.createServer(  (req, res) => {
                     .pipe(res); // this will be included to the body of the response.
 
                 // no need for res.end() if you are reading file stream, otherwise the body will be empty !
-            })
         }
         else{
             res.statusCode = 404 ;
