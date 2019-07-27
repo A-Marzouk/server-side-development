@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/A-Marzouk/server-side-development/issues"
   },
-  "homepage": "https://github.com/A-Marzouk/server-side-development#readme"
+  "homepage": "https://github.com/A-Marzouk/server-side-development#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
