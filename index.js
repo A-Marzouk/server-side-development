@@ -2,7 +2,11 @@ const express  = require('express'); // third part node module express.
 const http     = require('http'); // core module
 const morgan  = require('morgan'); // express middleware called morgan, used to log in information to the screen(console).
 const bodyParser = require('body-parser');
-const dishRouter = require('./routes/dishRouter');
+
+const dishRouter      = require('./routes/dishRouter');
+const promotionRouter = require('./routes/promotionRouter');
+const leaderRouter      = require('./routes/leaderRouter');
+
 const hostname = 'localhost';
 const port     = '3000';
 
@@ -17,6 +21,8 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json()); // this will allow us to parse the req.body to json so that we can use these data as we want.
 
 app.use('/dishes', dishRouter);
+app.use('/promotions', promotionRouter);
+app.use('/leaders', leaderRouter);
 
 // we might not need this if we already use the express static to get files.
 app.use( (req, res, next) => {
